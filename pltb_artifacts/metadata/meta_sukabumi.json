@@ -1,0 +1,43 @@
+{
+  "location": "Sukabumi",
+  "location_id": "sukabumi",
+  "scenario": "S7",
+  "target": "WS10M",
+  "forecast_horizon_hours": 1,
+  "feature_order": [
+    "WS10M_lag1",
+    "WS10M_lag6",
+    "WS10M_lag24",
+    "WS10M_roll3",
+    "WS10M_roll24",
+    "WS10M_std3",
+    "target_hour_sin",
+    "target_hour_cos",
+    "target_month_sin",
+    "target_month_cos"
+  ],
+  "model_file": "models/model_sukabumi.joblib",
+  "rf_params": {
+    "n_estimators": 120,
+    "max_depth": 18,
+    "min_samples_split": 10,
+    "min_samples_leaf": 5,
+    "max_features": "sqrt",
+    "bootstrap": true,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "scaler": null,
+  "training_range": "2013-01-01..2023-12-31 (train+val)",
+  "n_train_rows": 96384,
+  "test_range": "2024-01-01..2025-12-31 (held-out)",
+  "final_test_metrics": {
+    "mae": 0.14884625902413534,
+    "rmse": 0.20843846846366706,
+    "mape": 4.704795206612243,
+    "r2": 0.9807736703277029
+  },
+  "seed": 42,
+  "created_at": "2026-05-30T09:58:17.958143+00:00",
+  "recipe": "preprocessing_recipe.json"
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "pandeglang",
+    "name": "Pandeglang",
+    "rank": 1,
+    "coordinates": {
+      "lat": -6.86,
+      "lng": 105.54
+    },
+    "feasibilityScore": 74.0,
+    "status": "sangat_layak",
+    "category": "Sangat Direkomendasikan",
+    "bestScenario": "S4",
+    "metrics": {
+      "meanWindSpeed": 4.98,
+      "windPowerDensity": 115.6,
+      "operationalHoursPct": 80.2,
+      "windStabilityCV": 0.42,
+      "modelR2": 0.9906
+    }
+  },
+  {
+    "id": "bawean",
+    "name": "Bawean",
+    "rank": 2,
+    "coordinates": {
+      "lat": -5.7472,
+      "lng": 112.6936
+    },
+    "feasibilityScore": 65.9,
+    "status": "layak",
+    "category": "Direkomendasikan",
+    "bestScenario": "S4",
+    "metrics": {
+      "meanWindSpeed": 4.6,
+      "windPowerDensity": 98.3,
+      "operationalHoursPct": 73.7,
+      "windStabilityCV": 0.464,
+      "modelR2": 0.9926
+    }
+  },
+  {
+    "id": "sukabumi",
+    "name": "Sukabumi",
+    "rank": 3,
+    "coordinates": {
+      "lat": -7.2225,
+      "lng": 106.519
+    },
+    "feasibilityScore": 49.0,
+    "status": "kurang_layak",
+    "category": "Kurang Direkomendasikan",
+    "bestScenario": "S7",
+    "metrics": {
+      "meanWindSpeed": 3.76,
+      "windPowerDensity": 48.9,
+      "operationalHoursPct": 67.0,
+      "windStabilityCV": 0.405,
+      "modelR2": 0.9803
+    }
+  },
+  {
+    "id": "baron",
+    "name": "Baron",
+    "rank": 4,
+    "coordinates": {
+      "lat": -8.1324,
+      "lng": 110.5437
+    },
+    "feasibilityScore": 45.0,
+    "status": "kurang_layak",
+    "category": "Kurang Direkomendasikan",
+    "bestScenario": "S7",
+    "metrics": {
+      "meanWindSpeed": 3.52,
+      "windPowerDensity": 39.6,
+      "operationalHoursPct": 62.9,
+      "windStabilityCV": 0.394,
+      "modelR2": 0.9807
+    }
+  },
+  {
+    "id": "situbondo",
+    "name": "Situbondo",
+    "rank": 5,
+    "coordinates": {
+      "lat": -7.8134,
+      "lng": 114.4426
+    },
+    "feasibilityScore": 23.6,
+    "status": "tidak_layak",
+    "category": "Tidak Direkomendasikan",
+    "bestScenario": "S7",
+    "metrics": {
+      "meanWindSpeed": 2.4,
+      "windPowerDensity": 12.5,
+      "operationalHoursPct": 25.0,
+      "windStabilityCV": 0.391,
+      "modelR2": 0.9717
+    }
+  }
+]
