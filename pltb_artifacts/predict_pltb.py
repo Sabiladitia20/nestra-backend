@@ -5,6 +5,25 @@ from datetime import datetime
 import numpy as np, pandas as pd, joblib, sklearn
 
 
+HF_REPO_ID = "sabilditia/nestra-models"  # ← sesuaikan username HuggingFace kamu
+
+
+def _download_model_if_missing(model_filename: str, dest_dir: str) -> str:
+    """Download model dari HuggingFace kalau belum ada lokal."""
+    dest_path = os.path.join(dest_dir, model_filename)
+    if not os.path.exists(dest_path):
+        from huggingface_hub import hf_hub_download
+        print(f"[HF] Downloading {model_filename} ...")
+        hf_hub_download(
+            repo_id=HF_REPO_ID,
+            filename=model_filename,
+            repo_type="model",
+            local_dir=dest_dir,
+        )
+        print(f"[HF] ✅ {model_filename} selesai")
+    return dest_path
+
+
 class WindPredictor:
     """Registry 5 model RF per lokasi. Lazy-load + cache. Satu interface predict()."""
 
@@ -27,14 +46,19 @@ class WindPredictor:
             warnings.warn(f"sklearn mismatch: model dilatih {saved['scikit_learn']}, "
                           f"backend {cur}. Samakan versi agar aman.")
 
+    # ↓↓↓ METHOD YANG DIGANTI — download dari HuggingFace kalau tidak ada lokal ↓↓↓
     def _model(self, loc_id):
         if loc_id not in self._cache:
-            path = os.path.join(self.dir, self.locations[loc_id]["model_file"])
-            self._cache[loc_id] = joblib.load(path)
+            model_filename = os.path.basename(self.locations[loc_id]["model_file"])
+            models_dir = os.path.join(self.dir, "models")
+            os.makedirs(models_dir, exist_ok=True)
+            local_path = os.path.join(models_dir, model_filename)
+            _download_model_if_missing(model_filename, models_dir)
+            self._cache[loc_id] = joblib.load(local_path)
         return self._cache[loc_id]
+    # ↑↑↑ SAMPAI SINI ↑↑↑
 
     def _build_row(self, ws_hist, target_dt, feature_order):
-        """Rebuild fitur IDENTIK training. ws_hist urut waktu, elemen terakhir = jam t-1."""
         ws = np.asarray(ws_hist, dtype=float)
         if np.isnan(ws).any():
             raise ValueError("recent_ws10m mengandung NaN.")
